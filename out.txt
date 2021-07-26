@@ -1,0 +1,7 @@
+open class Polygon{
+	open func draw(){
+	}
+}
+abstract class Rectangle : Polygon(){
+	abstract override func draw()
+}
