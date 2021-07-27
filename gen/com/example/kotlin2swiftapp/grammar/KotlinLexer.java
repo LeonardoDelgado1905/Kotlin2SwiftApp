@@ -1,4 +1,4 @@
-// Generated from /home/manjaroleo/Desktop/Semestre VII/Lenguajes/Proyecto Final/App/src/main/java/com/example/kotlin2swiftapp/grammar/KotlinLexer.g4 by ANTLR 4.9.1
+// Generated from R:/Documentos/Unal/7moSemestre/Lenguajes/Proyecto/Kotlin2SwiftApp/src/main/java/com/example/kotlin2swiftapp/grammar\KotlinLexer.g4 by ANTLR 4.9.1
 package com.example.kotlin2swiftapp.grammar;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
