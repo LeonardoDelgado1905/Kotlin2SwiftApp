@@ -1,1 +1,13 @@
-Home
+func getName(b:Any)-> String?{
+	if(bString){
+		return b
+	}
+	return nil
+}
+class LazySingleton{
+{
+		let instance : LazySingleton by lazy{
+LazySingleton()		}
+
+}
+}
