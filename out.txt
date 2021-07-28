@@ -1,13 +1,10 @@
-func getName(b:Any)-> String?{
-	if(bString){
-		return b
+do {
+	if(n>0){
+		try Result.success(getData())
+	}else{
+		Result.success(getDefaultData())
 	}
-	return nil
+} catch Exception{
+	Result.failure(e)
 }
-class LazySingleton{
-{
-		let instance : LazySingleton by lazy{
-LazySingleton()		}
 
-}
-}

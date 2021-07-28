@@ -12,6 +12,8 @@ public class VisitorKotlin<T> extends KotlinParserBaseVisitor<T> {
     String parameters = "";
     boolean statement_inline = false;
     boolean in_parentezise = false;
+    boolean isTry = false;
+
     void print_tabs() {
         for (int i = 0; i < nested_level; ++i) {
             System.out.print("\t");
@@ -57,6 +59,10 @@ public class VisitorKotlin<T> extends KotlinParserBaseVisitor<T> {
             boolean interesting_thing = (call_sufix && !statement_inline && !in_parentezise) || ctx.getText().contains("--") || ctx.getText().contains("++");
             if (interesting_thing) {
                 print_tabs();
+                if(isTry){
+                    System.out.print("try ");
+                    isTry = false;
+                }
             }
             visitPrimaryExpression(ctx.primaryExpression());
             boolean just_print = ctx.primaryExpression().getText().equals("print");
@@ -129,8 +135,9 @@ public class VisitorKotlin<T> extends KotlinParserBaseVisitor<T> {
 
     @Override
     public T visitTryExpression(KotlinParser.TryExpressionContext ctx) {
-        System.out.println("try {");
+        System.out.println("do {");
         nested_level++;
+        isTry = true;
         visitBlock(ctx.block());
         nested_level--;
         if(ctx.catchBlock().size() > 0){
@@ -151,16 +158,16 @@ public class VisitorKotlin<T> extends KotlinParserBaseVisitor<T> {
 
     @Override
     public T visitCatchBlock(KotlinParser.CatchBlockContext ctx) {
-        System.out.print(" catch (");
+        System.out.print(" catch ");
 
         for(int i = 0; i < ctx.annotation().size(); i++){
             System.out.print(ctx.annotation(i).getText());
         }
 
-        System.out.print(ctx.simpleIdentifier().getText());
-        System.out.print(" : ");
+        //System.out.print(ctx.simpleIdentifier().getText());
+        //System.out.print(" : ");
         System.out.print(ctx.userType().getText());
-        System.out.println(") {");
+        System.out.println("{");
         nested_level++;
         visitBlock(ctx.block());
         nested_level--;
